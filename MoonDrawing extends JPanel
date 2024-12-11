@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class MoonDrawing extends JPanel {
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
+        // Create a smoother rendering of graphics
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Set the background color (dark blue sky)
+        g.setColor(new Color(10, 10, 40));
+        g.fillRect(0, 0, getWidth(), getHeight());
+
+        // Draw the moon (large gray circle)
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillOval(150, 100, 300, 300);
+
+        // Draw some craters on the moon
+        g.setColor(new Color(100, 100, 100));
+        g.fillOval(230, 160, 40, 40);
+        g.fillOval(270, 230, 50, 50);
+        g.fillOval(200, 250, 30, 30);
+        g.fillOval(320, 180, 30, 30);
+        
+        // Add a glow effect (faint white ring around the moon)
+        g.setColor(new Color(255, 255, 255, 50)); // Semi-transparent white
+        g.fillOval(130, 90, 340, 340);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Beautiful Moon");
+        MoonDrawing moonPanel = new MoonDrawing();
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 600); // Set the window size
+        frame.add(moonPanel);  // Add the drawing panel
+        frame.setLocationRelativeTo(null); // Center the window
+        frame.setVisible(true);
+    }
+}
